@@ -2,6 +2,21 @@
 
 複数の動画を一つの画面に並べて再生・確認できる、Windows向け動画プレビューアプリです。素材の縦横比を保った配置、クリックでの拡大、横スクロールで、多数の動画を見比べられます。
 
+![Möbiusの実際の一覧画面。横長・縦長・正方形の6本のデモ動画を並べて表示](docs/images/mobius-gallery.jpg)
+
+横長・縦長・正方形など、異なる縦横比の動画を一つの画面に並べて確認できます。
+
+<details>
+<summary>動画をクリックして拡大した画面を見る</summary>
+
+![Möbiusの実際の拡大画面。選択した動画と、シーク・FrameNumber・音量の操作バー](docs/images/mobius-focus.jpg)
+
+動画をクリックするとその場で拡大し、ほかの動画を縮小表示します。下部の操作バーからシーク、FrameNumber入力、音量調整ができます。
+
+</details>
+
+画像はMöbius 0.8.3を実際に起動して撮影したものです。UIは実際のアプリの表示で、動画内の風景などにはAI生成のデモ素材を使用しています。[画像の作成について](docs/images/README.md)
+
 ## ダウンロードとインストール
 
 **[Möbiusを無料ダウンロード](https://github.com/masatakap/M-bius/releases/latest/download/Mobius-Setup.exe)**
