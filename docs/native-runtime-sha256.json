@@ -1,0 +1,12 @@
+{
+  "app_version": "0.8.3",
+  "note": "Baseline runtime binaries used for local validation. Binaries are not in this repository. This manifest is not a corresponding-source archive.",
+  "sha256": {
+    "libmpv-2.dll": "673e6397920ab64a9c5b3a618f7f16d38854efe72b58665f1f84e4e873b763a4",
+    "hap_demux.dll": "aac081399561cc46fe4d78c6e2089cc93aa57c5f94c8755a77e3a8f56ec6f68a",
+    "avformat-62.dll": "b1844d706156bb401b7d6b752aefbd062efd836fb1a834bdc204af8f7f6356ab",
+    "avcodec-62.dll": "996e207654a0ae390bcc7ab7e7d750802fd3808b12f3768edcd1f741fd38c9a5",
+    "avutil-60.dll": "66fa0d480ff2d2b4cf5475fd9db6c06dc16a33dee9f88256364a8f2e93e73e07",
+    "swresample-6.dll": "797d5416654cc24e4e75b41e886081b6c363351643c435694ce5c9fb5a8780b7"
+  }
+}
