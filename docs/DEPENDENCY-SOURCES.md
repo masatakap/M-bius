@@ -20,13 +20,13 @@ The installed native files match [native-runtime-sha256.json](native-runtime-sha
 
 ### What is still missing
 
-1. **libmpv dependency revisions.** Several recipes use moving branches. The available log does not identify every source revision included in the DLL. An [existing upstream issue for this exact DLL](https://github.com/shinchiro/mpv-winbuild-cmake/issues/848) has no reply as of the check date. Do not replace unknown revisions with today's branch heads or infer them solely from commit dates.
+1. **libmpv dependency revisions.** Several recipes use moving branches. The available log does not identify every source revision included in the DLL. An [existing upstream issue for this exact DLL](https://github.com/shinchiro/mpv-winbuild-cmake/issues/848) has no maintainer reply as of the check date. Do not replace unknown revisions with today's branch heads or infer them solely from commit dates.
 2. **Dependency sources and notices.** Collect the sources and applicable notices for the actual included components of both builds, including submodules, patches and build/install instructions. BtbN recipes contain many pinned revisions, but the corresponding source collection is not yet complete. The original FFmpeg workflow log download returns HTTP 410; identifying its workflow commit does not establish every dependency image input.
 3. **Final packaging.** Once the inventory is complete, package the notices with the installer and provide the source archives with the binary release. Rebuild and check the final installer before replacing the draft asset, then publish and test the anonymous download URL.
 
 ### Ways to finish
 
-- Obtain the missing source/version information from the binary provider. This preserves the tested runtime. An inquiry has been prepared locally; no message has been sent from this project during this investigation.
+- Obtain the missing source/version information from the binary provider. This preserves the tested runtime. A [source inquiry](https://github.com/shinchiro/mpv-winbuild-cmake/issues/848#issuecomment-6041669942) was posted from `masatakap` on 2026-10-08 (JST). It asks for the missing source archive or dependency revision manifest, or an available alternative build with that information. Awaiting a maintainer response.
 - If the original sources cannot be identified, build the runtime from recorded source revisions and preserve the sources and notices as part of that build. Stage it separately, retain the tested runtime, and verify codecs, GPU rendering, Hap, seeking and installation before adopting it.
 
 The current installer SHA-256 is `957075ac386edd56de74570e95ee3612f25f63218183e9e1df1aa0386a8520dd`. This hash verifies the draft file only; it does not indicate that source preparation is complete.
@@ -37,7 +37,9 @@ The current installer SHA-256 is `957075ac386edd56de74570e95ee3612f25f63218183e9
 
 mpv本体、そこに組み込まれたFFmpeg、Hap用FFmpeg、および両方のビルド手順について、版を特定して5個のソースアーカイブをローカルに確保しました。版・URL・容量・SHA-256は [native-source-audit.json](native-source-audit.json) に記録しています。ライブラリーのバージョンは実際のDLLと元のSDKからも確認しました。
 
-ただし、これだけでは依存物を含む完全な対応ソースになりません。主な未解決点は、**libmpvへ組み込まれた依存ライブラリーすべての版が特定できていないこと**です。同じDLLについて[配布元への既存の問い合わせ](https://github.com/shinchiro/mpv-winbuild-cmake/issues/848)もありますが、確認時点で回答はありません。現在の最新版や日付から推測した版を、使用された版として扱いません。
+ただし、これだけでは依存物を含む完全な対応ソースになりません。主な未解決点は、**libmpvへ組み込まれた依存ライブラリーすべての版が特定できていないこと**です。同じDLLについて[配布元への既存の問い合わせ](https://github.com/shinchiro/mpv-winbuild-cmake/issues/848)もありますが、確認時点で配布元からの回答はありません。現在の最新版や日付から推測した版を、使用された版として扱いません。
+
+2026-10-08（日本時間）に、`masatakap` から[不足情報の問い合わせ](https://github.com/shinchiro/mpv-winbuild-cmake/issues/848#issuecomment-6041669942)を送信しました。必要なソース一式または依存物の版一覧、もしくはそれらを入手できる別のビルドがあるかを確認しています。現在は配布元の回答待ちです。
 
 配布元から不足情報を得て現在の版を維持するか、ソースの版を記録した構成で再ビルドする必要があります。再ビルドする場合は別の作業用フォルダーで進め、動画形式・GPU描画・Hap・シーク・インストールを再検証してから採用します。調査中にアプリ本体や既存のDLLは変更していません。
 

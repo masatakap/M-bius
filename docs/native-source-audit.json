@@ -61,12 +61,19 @@
     "ffmpeg_build_run": "https://github.com/BtbN/FFmpeg-Builds/actions/runs/34967781095",
     "existing_upstream_source_request": "https://github.com/shinchiro/mpv-winbuild-cmake/issues/848",
     "version_check": "Queried libmpv mpv-version and ffmpeg-version properties; ran original FFmpeg SDK ffmpeg.exe -version. Native DLL hashes match native-runtime-sha256.json.",
-    "ffmpeg_log_status": "Workflow run and head commit identified. Log download returned HTTP 410 on 2026-10-08."
+    "ffmpeg_log_status": "Workflow run and head commit identified. Log download returned HTTP 410 on 2026-10-08.",
+    "project_source_inquiry": "https://github.com/shinchiro/mpv-winbuild-cmake/issues/848#issuecomment-6041669942"
   },
   "remaining": [
     "Identify revisions and any local modifications for all non-system dependencies included in libmpv; several upstream recipes use moving branches.",
     "Collect sources, patches, submodules and applicable license notices for the dependencies included in both native builds. Recipe pins alone do not complete this step.",
     "Preserve build and installation instructions sufficient for recipients to build the corresponding sources.",
     "Rebuild installer with the completed third-party notice inventory; publish source archives alongside the final binary."
-  ]
+  ],
+  "upstream_inquiry": {
+    "status": "awaiting-maintainer-response",
+    "posted_at": "2026-10-07T15:58:48Z",
+    "author": "masatakap",
+    "url": "https://github.com/shinchiro/mpv-winbuild-cmake/issues/848#issuecomment-6041669942"
+  }
 }
