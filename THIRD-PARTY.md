@@ -1,5 +1,7 @@
 # Third-party components
 
+Source preparation status, identified revisions and remaining work: [Native dependency sources](docs/DEPENDENCY-SOURCES.md). This inventory is incomplete and is not a complete corresponding-source archive.
+
 ## libmpv
 
 - Binary: `app/libmpv-2.dll`

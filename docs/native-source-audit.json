@@ -1,0 +1,72 @@
+{
+  "complete_corresponding_source": false,
+  "note": "Identified top-level sources only. Transitive dependencies and submodules are not covered.",
+  "archives": [
+    {
+      "component": "mpv",
+      "repository": "https://github.com/mpv-player/mpv",
+      "revision": "69e63f425a531f814431fba12750bdb3721357f2",
+      "archive_url": "https://codeload.github.com/mpv-player/mpv/tar.gz/69e63f425a531f814431fba12750bdb3721357f2",
+      "file": "mpv-69e63f425a531f814431fba12750bdb3721357f2.tar.gz",
+      "bytes": 7453198,
+      "sha256": "2ae37a9f34730124f73367f31a72f378ba29b4ee96b813306dd6a901ac3af4eb"
+    },
+    {
+      "component": "mpv-ffmpeg",
+      "repository": "https://github.com/FFmpeg/FFmpeg",
+      "revision": "9fc8c785e2747c87121ec28f8f10ceab0562384b",
+      "archive_url": "https://codeload.github.com/FFmpeg/FFmpeg/tar.gz/9fc8c785e2747c87121ec28f8f10ceab0562384b",
+      "file": "mpv-ffmpeg-9fc8c785e2747c87121ec28f8f10ceab0562384b.tar.gz",
+      "bytes": 17612137,
+      "sha256": "1f5e585b5b0a8cc3b167f85a464878e50bc3e044832d052bc7cd62e4e3af3506"
+    },
+    {
+      "component": "hap-ffmpeg",
+      "repository": "https://github.com/FFmpeg/FFmpeg",
+      "revision": "1005b294ffdf1b4e75f58d7e98362f82462a6a61",
+      "archive_url": "https://codeload.github.com/FFmpeg/FFmpeg/tar.gz/1005b294ffdf1b4e75f58d7e98362f82462a6a61",
+      "file": "hap-ffmpeg-1005b294ffdf1b4e75f58d7e98362f82462a6a61.tar.gz",
+      "bytes": 16905580,
+      "sha256": "acd4385e9084beff6497030fc832a920e1699b87a79c80a30e787c2d3469ecfa"
+    },
+    {
+      "component": "mpv-build",
+      "repository": "https://github.com/shinchiro/mpv-winbuild-cmake",
+      "revision": "cd1edc11dc6887a50f705717619d879f5a93a488",
+      "archive_url": "https://codeload.github.com/shinchiro/mpv-winbuild-cmake/tar.gz/cd1edc11dc6887a50f705717619d879f5a93a488",
+      "file": "mpv-build-cd1edc11dc6887a50f705717619d879f5a93a488.tar.gz",
+      "bytes": 81655,
+      "sha256": "8b92a254771496b0dcc23017c2734bfa7545441d3e6a37958b063d6e7814a657"
+    },
+    {
+      "component": "ffmpeg-build",
+      "repository": "https://github.com/BtbN/FFmpeg-Builds",
+      "revision": "3e6685eda92f9288c15ac320139622dcedca09a4",
+      "archive_url": "https://codeload.github.com/BtbN/FFmpeg-Builds/tar.gz/3e6685eda92f9288c15ac320139622dcedca09a4",
+      "file": "ffmpeg-build-3e6685eda92f9288c15ac320139622dcedca09a4.tar.gz",
+      "bytes": 105448,
+      "sha256": "7dae192106e3fb6851e781300e5b4a8d65091b5b85c703b31e3dea031ffd8849"
+    }
+  ],
+  "checked_on": "2026-10-08",
+  "status": "incomplete-not-for-public-binary-release",
+  "app_version": "0.8.3",
+  "runtime_versions": {
+    "libmpv": "mpv v0.41.0-1023-g69e63f425",
+    "libmpv_embedded_ffmpeg": "N-126390-g9fc8c785e",
+    "hap_ffmpeg": "n8.1.2-53-g1005b294ff-20260915"
+  },
+  "evidence": {
+    "mpv_build_run": "https://github.com/shinchiro/mpv-winbuild-cmake/actions/runs/33697571182",
+    "ffmpeg_build_run": "https://github.com/BtbN/FFmpeg-Builds/actions/runs/34967781095",
+    "existing_upstream_source_request": "https://github.com/shinchiro/mpv-winbuild-cmake/issues/848",
+    "version_check": "Queried libmpv mpv-version and ffmpeg-version properties; ran original FFmpeg SDK ffmpeg.exe -version. Native DLL hashes match native-runtime-sha256.json.",
+    "ffmpeg_log_status": "Workflow run and head commit identified. Log download returned HTTP 410 on 2026-10-08."
+  },
+  "remaining": [
+    "Identify revisions and any local modifications for all non-system dependencies included in libmpv; several upstream recipes use moving branches.",
+    "Collect sources, patches, submodules and applicable license notices for the dependencies included in both native builds. Recipe pins alone do not complete this step.",
+    "Preserve build and installation instructions sufficient for recipients to build the corresponding sources.",
+    "Rebuild installer with the completed third-party notice inventory; publish source archives alongside the final binary."
+  ]
+}
