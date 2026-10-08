@@ -29,8 +29,6 @@ export AR=x86_64-w64-mingw32-ar
 export RANLIB=x86_64-w64-mingw32-ranlib
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR"
-# Meson's system dependency lookup asks GCC for its library search directories.
-export LIBRARY_PATH="$PREFIX/lib"
 export CFLAGS="-O2 -march=x86-64 -mtune=generic -I$PREFIX/include"
 export CXXFLAGS="$CFLAGS"
 export LDFLAGS="-L$PREFIX/lib -static-libgcc -static-libstdc++"
@@ -138,7 +136,11 @@ done
 sed -e "s|^prefix=.*|prefix=$PREFIX|" -e "s|^relver=.*|relver=$lua_epoch|" \
     -e 's|^Libs.private:.*|Libs.private: -lm|' \
     "$SRC/luajit/etc/luajit.pc" > "$PREFIX/lib/pkgconfig/luajit.pc"
+# Meson's iconv system lookup does not search this cross-build prefix for a
+# static archive. Link it explicitly for both its probe and the finished DLL.
 meson_build mpv --default-library=shared -Dgpl=false -Dlibmpv=true -Dcplayer=true -Dlua=luajit \
+    "-Dc_link_args=['-L$PREFIX/lib','-static-libgcc','-static-libstdc++','$PREFIX/lib/libiconv.a']" \
+    "-Dcpp_link_args=['-L$PREFIX/lib','-static-libgcc','-static-libstdc++','$PREFIX/lib/libiconv.a']" \
     -Dbuild-date=false -Dgl=enabled -Dgl-win32=enabled -Dplain-gl=enabled \
     -Dgl-dxinterop=enabled -Dgl-dxinterop-d3d9=enabled -Dvector=enabled \
     -Dd3d-hwaccel=enabled -Dd3d9-hwaccel=enabled \
