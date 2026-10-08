@@ -9,6 +9,19 @@ exec > >(tee "$WORK/logs/build.log") 2>&1
 PREFIX="$WORK/prefix"
 SRC="$WORK/src"
 JOBS=${JOBS:-4}
+# Cache compiled objects only; ccache checks compiler content, sources and flags.
+if command -v ccache >/dev/null; then
+    mkdir -p "$WORK/compiler-wrappers"
+    for compiler in x86_64-w64-mingw32-gcc-posix x86_64-w64-mingw32-g++-posix; do
+        compiler_path=$(command -v "$compiler")
+        printf '#!/bin/sh\nexec ccache "%s" "$@"\n' "$compiler_path" > "$WORK/compiler-wrappers/$compiler"
+        chmod +x "$WORK/compiler-wrappers/$compiler"
+    done
+    export PATH="$WORK/compiler-wrappers:$PATH"
+    export CCACHE_COMPILERCHECK=content
+    export CCACHE_BASEDIR="$WORK"
+    ccache --max-size=1G
+fi
 export SOURCE_DATE_EPOCH=1789528738
 export CC=x86_64-w64-mingw32-gcc-posix
 export CXX=x86_64-w64-mingw32-g++-posix
@@ -104,6 +117,7 @@ mkdir -p "$WORK/build/ffmpeg"
     --enable-zlib --enable-iconv --enable-libdav1d --enable-ffnvcodec \
     --enable-nvdec --enable-cuvid --enable-nvenc --enable-d3d11va --enable-dxva2 \
     --enable-schannel --extra-cflags="$CFLAGS" --extra-ldflags="$LDFLAGS" \
+    --extra-libs=-liconv \
     --extra-version=mobius-experimental \
     && make -j"$JOBS" && make install)
 meson_build mpv --default-library=shared -Dgpl=false -Dlibmpv=true -Dcplayer=true \
