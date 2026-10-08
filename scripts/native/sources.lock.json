@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "purpose": "Experimental Windows x64 rebuild. Not a manifest for the existing 0.8.3 DLLs.",
+  "sources": [
+    {
+      "name": "zlib",
+      "revision": "e3dc0a85b7032e98380dec011bc8f2c2ee0d8fca",
+      "url": "https://codeload.github.com/madler/zlib/tar.gz/e3dc0a85b7032e98380dec011bc8f2c2ee0d8fca",
+      "archive": "zlib-e3dc0a85b7032e98380dec011bc8f2c2ee0d8fca.tar.gz",
+      "sha256": "33356dac6140d584347fe46bcf7083bd949dec49ac4b52417ae334ec70e3dbc3"
+    },
+    {
+      "name": "libiconv",
+      "revision": "1.18",
+      "url": "https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.18.tar.gz",
+      "archive": "libiconv-1.18.tar.gz",
+      "sha256": "3b08f5f4f9b4eb82f151a7040bfd6fe6c6fb922efe4b1659c66ea933276965e8"
+    },
+    {
+      "name": "freetype",
+      "revision": "9e9d3b73f31367dbb4261f93c727a277f6632c77",
+      "url": "https://codeload.github.com/freetype/freetype/tar.gz/9e9d3b73f31367dbb4261f93c727a277f6632c77",
+      "archive": "freetype-9e9d3b73f31367dbb4261f93c727a277f6632c77.tar.gz",
+      "sha256": "8d4c0654fc2ba0d29038b8c58b7298089203f85b6cf1d4ffe0c39f5164ed7ee9"
+    },
+    {
+      "name": "fribidi",
+      "revision": "04a8cb7a3674717e509c79cd6ee3e127d0c75f4c",
+      "url": "https://codeload.github.com/fribidi/fribidi/tar.gz/04a8cb7a3674717e509c79cd6ee3e127d0c75f4c",
+      "archive": "fribidi-04a8cb7a3674717e509c79cd6ee3e127d0c75f4c.tar.gz",
+      "sha256": "53311bf290bdbd036f4cd94fa2776c6be34adb4287d7f2f7c1e1700b3f2934e4"
+    },
+    {
+      "name": "harfbuzz",
+      "revision": "d8dabe2594596c656b54c3b0072f3aa3093f30a9",
+      "url": "https://codeload.github.com/harfbuzz/harfbuzz/tar.gz/d8dabe2594596c656b54c3b0072f3aa3093f30a9",
+      "archive": "harfbuzz-d8dabe2594596c656b54c3b0072f3aa3093f30a9.tar.gz",
+      "sha256": "6bd3f828ae8b2df8980f6a969507cdd3e4e87133d254fe15547b73f0c44c45a7"
+    },
+    {
+      "name": "libunibreak",
+      "revision": "3ce4bfa3129ff3738046a44a6db533d2ce25af2b",
+      "url": "https://codeload.github.com/adah1972/libunibreak/tar.gz/3ce4bfa3129ff3738046a44a6db533d2ce25af2b",
+      "archive": "libunibreak-3ce4bfa3129ff3738046a44a6db533d2ce25af2b.tar.gz",
+      "sha256": "829dd89358b2096121af166b0f23a0236c4cc17456f5b6c5e68060838ae2cd50"
+    },
+    {
+      "name": "libass",
+      "revision": "3087d2b2ffda76602a17f9b09d25cb8addc8d313",
+      "url": "https://codeload.github.com/libass/libass/tar.gz/3087d2b2ffda76602a17f9b09d25cb8addc8d313",
+      "archive": "libass-3087d2b2ffda76602a17f9b09d25cb8addc8d313.tar.gz",
+      "sha256": "4f1c2b181f1acd59e68c69e2b2b201d4cd6fe85f2f52e9eb357f27e1959bb296"
+    },
+    {
+      "name": "lcms2",
+      "revision": "a5b898c7e3985550aab846a2abb4ae08904a857f",
+      "url": "https://codeload.github.com/mm2/Little-CMS/tar.gz/a5b898c7e3985550aab846a2abb4ae08904a857f",
+      "archive": "lcms2-a5b898c7e3985550aab846a2abb4ae08904a857f.tar.gz",
+      "sha256": "2e3493e2722eecd92ed12f70d4c8c29039e1f2362e7b6c96d941b1206a0074c4"
+    },
+    {
+      "name": "dav1d",
+      "revision": "54706fc6bc0cdecab7e9593974a4039cc038fca7",
+      "url": "https://codeload.github.com/videolan/dav1d/tar.gz/54706fc6bc0cdecab7e9593974a4039cc038fca7",
+      "archive": "dav1d-54706fc6bc0cdecab7e9593974a4039cc038fca7.tar.gz",
+      "sha256": "9edb11a2108b375cc58370354e705feebc93430bb780130363815c1e1ac0c250"
+    },
+    {
+      "name": "nv-codec-headers",
+      "revision": "eddcea9e27f6b772057c9b3f87de2cc1737faffc",
+      "url": "https://codeload.github.com/FFmpeg/nv-codec-headers/tar.gz/eddcea9e27f6b772057c9b3f87de2cc1737faffc",
+      "archive": "nv-codec-headers-eddcea9e27f6b772057c9b3f87de2cc1737faffc.tar.gz",
+      "sha256": "ea251ed884765b7523e0f4fa814dfd9acd7b5dcc43878cad744b77a46b429e48"
+    },
+    {
+      "name": "libplacebo",
+      "revision": "22ee762e8e0890fc54068beb670310f0edce7263",
+      "url": "https://codeload.github.com/haasn/libplacebo/tar.gz/22ee762e8e0890fc54068beb670310f0edce7263",
+      "archive": "libplacebo-22ee762e8e0890fc54068beb670310f0edce7263.tar.gz",
+      "sha256": "eeb9adc48c1d580bfd5ba7b4a64380fa9b62c0150f1a828e8b2bc17662d40c29"
+    },
+    {
+      "name": "libplacebo/3rdparty/glad",
+      "revision": "73db193f853e2ee079bf3ca8a64aa2eaf6459043",
+      "url": "https://codeload.github.com/Dav1dde/glad/tar.gz/73db193f853e2ee079bf3ca8a64aa2eaf6459043",
+      "archive": "libplacebo_3rdparty_glad-73db193f853e2ee079bf3ca8a64aa2eaf6459043.tar.gz",
+      "sha256": "33dbeae44d8315ece57e14eba4b1b4a02ac5406d1c4f49cd20048c91522a6b9a"
+    },
+    {
+      "name": "libplacebo/3rdparty/fast_float",
+      "revision": "97b54ca9e75f5303507699d27c6b4f4efe4641a1",
+      "url": "https://codeload.github.com/fastfloat/fast_float/tar.gz/97b54ca9e75f5303507699d27c6b4f4efe4641a1",
+      "archive": "libplacebo_3rdparty_fast_float-97b54ca9e75f5303507699d27c6b4f4efe4641a1.tar.gz",
+      "sha256": "2b132274539286e41f37857cac22aa8441d21bd86d55de825a3342b149f66801"
+    },
+    {
+      "name": "libplacebo/3rdparty/jinja",
+      "revision": "15206881c006c79667fe5154fe80c01c65410679",
+      "url": "https://codeload.github.com/pallets/jinja/tar.gz/15206881c006c79667fe5154fe80c01c65410679",
+      "archive": "libplacebo_3rdparty_jinja-15206881c006c79667fe5154fe80c01c65410679.tar.gz",
+      "sha256": "b88a20dcc2e34072fcf4159325bc6c34cd4b29a81a8b83d15d2f28ba561da296"
+    },
+    {
+      "name": "libplacebo/3rdparty/markupsafe",
+      "revision": "297fc8e356e6836a62087949245d09a28e9f1b13",
+      "url": "https://codeload.github.com/pallets/markupsafe/tar.gz/297fc8e356e6836a62087949245d09a28e9f1b13",
+      "archive": "libplacebo_3rdparty_markupsafe-297fc8e356e6836a62087949245d09a28e9f1b13.tar.gz",
+      "sha256": "da7c010c9c81a66ac73036558c1fcb6212b50482f43211cd1254035b94f82414"
+    },
+    {
+      "name": "libplacebo/3rdparty/Vulkan-Headers",
+      "revision": "74d8a6cb930c68ef617b202c3ff3c59d919e086b",
+      "url": "https://codeload.github.com/KhronosGroup/Vulkan-Headers/tar.gz/74d8a6cb930c68ef617b202c3ff3c59d919e086b",
+      "archive": "libplacebo_3rdparty_Vulkan-Headers-74d8a6cb930c68ef617b202c3ff3c59d919e086b.tar.gz",
+      "sha256": "75967a8288ff16044a86d1af462b96d2e75c435937efb75f2bb4102ab0382f29"
+    },
+    {
+      "name": "libplacebo/demos/3rdparty/nuklear",
+      "revision": "242f35efa067a46c595645eeda7b1771ea1f83b1",
+      "url": "https://codeload.github.com/Immediate-Mode-UI/Nuklear/tar.gz/242f35efa067a46c595645eeda7b1771ea1f83b1",
+      "archive": "libplacebo_demos_3rdparty_nuklear-242f35efa067a46c595645eeda7b1771ea1f83b1.tar.gz",
+      "sha256": "ac567995f917c10a722409e0141d226e737d06488b0a31166f6e4925da8e58f0"
+    },
+    {
+      "name": "ffmpeg",
+      "revision": "1005b294ffdf1b4e75f58d7e98362f82462a6a61",
+      "url": "https://codeload.github.com/FFmpeg/FFmpeg/tar.gz/1005b294ffdf1b4e75f58d7e98362f82462a6a61",
+      "archive": "ffmpeg-1005b294ffdf1b4e75f58d7e98362f82462a6a61.tar.gz",
+      "sha256": "acd4385e9084beff6497030fc832a920e1699b87a79c80a30e787c2d3469ecfa"
+    },
+    {
+      "name": "mpv",
+      "revision": "69e63f425a531f814431fba12750bdb3721357f2",
+      "url": "https://codeload.github.com/mpv-player/mpv/tar.gz/69e63f425a531f814431fba12750bdb3721357f2",
+      "archive": "mpv-69e63f425a531f814431fba12750bdb3721357f2.tar.gz",
+      "sha256": "2ae37a9f34730124f73367f31a72f378ba29b4ee96b813306dd6a901ac3af4eb"
+    }
+  ]
+}

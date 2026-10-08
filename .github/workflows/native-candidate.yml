@@ -1,0 +1,51 @@
+name: Native runtime candidate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install cross-build tools
+        run: |
+          sudo sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
+          sudo apt-get update
+          sudo apt-get install -y gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 cmake ninja-build nasm pkg-config autoconf automake libtool gettext python3-venv
+          python3 -m venv "$RUNNER_TEMP/native-python"
+          "$RUNNER_TEMP/native-python/bin/pip" install meson==1.9.1 packaging==25.0
+          echo "$RUNNER_TEMP/native-python/bin" >> "$GITHUB_PATH"
+      - name: Build separate Windows x64 candidate
+        run: bash scripts/native/build-linux.sh "$RUNNER_TEMP/mobius-native"
+      - name: Preserve source inputs and diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-candidate-${{ github.run_id }}
+          retention-days: 30
+          compression-level: 0
+          path: |
+            ${{ runner.temp }}/mobius-native/archives/
+            ${{ runner.temp }}/mobius-native/notices/
+            ${{ runner.temp }}/mobius-native/toolchain-sources/
+            ${{ runner.temp }}/mobius-native/provenance/
+            ${{ runner.temp }}/mobius-native/logs/
+            ${{ runner.temp }}/mobius-native/build/**/meson-logs/meson-log.txt
+            ${{ runner.temp }}/mobius-native/build/ffmpeg/ffbuild/config.log
+            ${{ runner.temp }}/mobius-native/*manifest.json
+            ${{ runner.temp }}/mobius-native/*inventory.json
+            ${{ runner.temp }}/mobius-native/sources.lock.json
+            ${{ runner.temp }}/mobius-native/SHA256SUMS.txt
+            ${{ runner.temp }}/mobius-native/cross.ini
+            ${{ runner.temp }}/mobius-native/toolchain.cmake
+      - name: Preserve candidate binaries after source artifact succeeds
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-candidate-binaries-${{ github.run_id }}
+          retention-days: 30
+          path: ${{ runner.temp }}/mobius-native/runtime/

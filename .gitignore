@@ -63,3 +63,7 @@ install-baseline.json
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Python build helpers
+__pycache__/
+*.pyc
