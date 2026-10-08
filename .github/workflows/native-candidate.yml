@@ -26,7 +26,9 @@ jobs:
         with:
           path: .native-ccache
           key: native-ubuntu24-${{ hashFiles('scripts/native/sources.lock.json') }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: native-ubuntu24-${{ hashFiles('scripts/native/sources.lock.json') }}-
+          restore-keys: |
+            native-ubuntu24-${{ hashFiles('scripts/native/sources.lock.json') }}-
+            native-ubuntu24-
       - name: Build separate Windows x64 candidate
         run: bash scripts/native/build-linux.sh "$RUNNER_TEMP/mobius-native"
       - name: Save compiler cache for subsequent diagnostic runs

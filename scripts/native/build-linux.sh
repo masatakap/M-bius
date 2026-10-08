@@ -29,6 +29,8 @@ export AR=x86_64-w64-mingw32-ar
 export RANLIB=x86_64-w64-mingw32-ranlib
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR"
+# Meson's system dependency lookup asks GCC for its library search directories.
+export LIBRARY_PATH="$PREFIX/lib"
 export CFLAGS="-O2 -march=x86-64 -mtune=generic -I$PREFIX/include"
 export CXXFLAGS="$CFLAGS"
 export LDFLAGS="-L$PREFIX/lib -static-libgcc -static-libstdc++"
@@ -109,6 +111,8 @@ meson_build libplacebo -Dopengl=enabled -Dlcms=enabled -Ddemos=false -Dtests=fal
     -Dvulkan=disabled -Dd3d11=disabled -Dshaderc=disabled -Dglslang=disabled
 
 mkdir -p "$WORK/build/ffmpeg"
+# With --disable-autodetect, this FFmpeg revision only probes libc for iconv.
+# Supply the locked external library explicitly for configuration and final links.
 (cd "$WORK/build/ffmpeg" && "$SRC/ffmpeg/configure" --prefix="$PREFIX" \
     --target-os=mingw32 --arch=x86_64 --enable-cross-compile --cross-prefix=x86_64-w64-mingw32- \
     --cc="$CC" --cxx="$CXX" --pkg-config=pkg-config --pkg-config-flags=--static \
@@ -120,7 +124,21 @@ mkdir -p "$WORK/build/ffmpeg"
     --extra-libs=-liconv \
     --extra-version=mobius-experimental \
     && make -j"$JOBS" && make install)
-meson_build mpv --default-library=shared -Dgpl=false -Dlibmpv=true -Dcplayer=true \
+# Source archives do not carry LuaJIT's git timestamp; use the locked commit date.
+lua_epoch=$(python3 -c 'import json,sys; print(next(s["source_date_epoch"] for s in json.load(open(sys.argv[1]))["sources"] if s["name"] == "luajit"))' "$WORK/sources.lock.json")
+printf '%s\n' "$lua_epoch" > "$SRC/luajit/.relver"
+make -C "$SRC/luajit/src" -j"$JOBS" CC=gcc HOST_CC=gcc CROSS=x86_64-w64-mingw32- \
+    STATIC_CC="$CC" TARGET_LD="$CC" TARGET_SYS=Windows BUILDMODE=static \
+    CFLAGS= LDFLAGS= TARGET_CFLAGS="$CFLAGS" TARGET_LDFLAGS="$LDFLAGS"
+mkdir -p "$PREFIX/include/luajit-2.1" "$PREFIX/lib/pkgconfig"
+cp "$SRC/luajit/src/libluajit.a" "$PREFIX/lib/libluajit-5.1.a"
+for header in lua.h lualib.h lauxlib.h luaconf.h lua.hpp luajit.h; do
+    cp "$SRC/luajit/src/$header" "$PREFIX/include/luajit-2.1/"
+done
+sed -e "s|^prefix=.*|prefix=$PREFIX|" -e "s|^relver=.*|relver=$lua_epoch|" \
+    -e 's|^Libs.private:.*|Libs.private: -lm|' \
+    "$SRC/luajit/etc/luajit.pc" > "$PREFIX/lib/pkgconfig/luajit.pc"
+meson_build mpv --default-library=shared -Dgpl=false -Dlibmpv=true -Dcplayer=true -Dlua=luajit \
     -Dbuild-date=false -Dgl=enabled -Dgl-win32=enabled -Dplain-gl=enabled \
     -Dgl-dxinterop=enabled -Dgl-dxinterop-d3d9=enabled -Dvector=enabled \
     -Dd3d-hwaccel=enabled -Dd3d9-hwaccel=enabled \

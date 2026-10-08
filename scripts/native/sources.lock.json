@@ -129,6 +129,14 @@
       "sha256": "acd4385e9084beff6497030fc832a920e1699b87a79c80a30e787c2d3469ecfa"
     },
     {
+      "name": "luajit",
+      "revision": "c6ffc141a8762b41703f9287d63d93622a13dd8f",
+      "url": "https://codeload.github.com/LuaJIT/LuaJIT/tar.gz/c6ffc141a8762b41703f9287d63d93622a13dd8f",
+      "archive": "luajit-c6ffc141a8762b41703f9287d63d93622a13dd8f.tar.gz",
+      "sha256": "6e5fec07750add912e7c3eae0c194d24cd6d023714e1f04a0298a5b4819e4457",
+      "source_date_epoch": 1788856981
+    },
+    {
       "name": "mpv",
       "revision": "69e63f425a531f814431fba12750bdb3721357f2",
       "url": "https://codeload.github.com/mpv-player/mpv/tar.gz/69e63f425a531f814431fba12750bdb3721357f2",
