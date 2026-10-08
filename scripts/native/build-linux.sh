@@ -33,6 +33,7 @@ cpp = '$CXX'
 ar = '$AR'
 strip = 'x86_64-w64-mingw32-strip'
 windres = 'x86_64-w64-mingw32-windres'
+dlltool = 'x86_64-w64-mingw32-dlltool'
 pkg-config = 'pkg-config'
 [host_machine]
 system = 'windows'
@@ -62,7 +63,7 @@ meson_build() {
     local name=$1; shift
     meson setup "$WORK/build/$name" "$SRC/$name" --cross-file "$WORK/cross.ini" \
         --prefix "$PREFIX" --libdir lib --buildtype release --default-library static \
-        --wrap-mode=nofallback -Dauto_features=disabled "$@"
+        --wrap-mode=nofallback -Dauto_features=disabled -Dprefer_static=true "$@"
     meson compile -C "$WORK/build/$name" -j "$JOBS"
     meson install -C "$WORK/build/$name"
 }
@@ -107,7 +108,8 @@ mkdir -p "$WORK/build/ffmpeg"
     && make -j"$JOBS" && make install)
 meson_build mpv --default-library=shared -Dgpl=false -Dlibmpv=true -Dcplayer=true \
     -Dbuild-date=false -Dgl=enabled -Dgl-win32=enabled -Dplain-gl=enabled \
-    -Dgl-dxinterop=enabled -Dd3d-hwaccel=enabled -Dd3d9-hwaccel=enabled \
+    -Dgl-dxinterop=enabled -Dgl-dxinterop-d3d9=enabled -Dvector=enabled \
+    -Dd3d-hwaccel=enabled -Dd3d9-hwaccel=enabled \
     -Dcuda-hwaccel=enabled -Dcuda-interop=enabled -Dwasapi=enabled \
     -Dwin32-threads=enabled -Dwin32-smtc=disabled -Diconv=enabled \
     -Dlcms2=enabled -Dzlib=enabled -Dmanpage-build=disabled
