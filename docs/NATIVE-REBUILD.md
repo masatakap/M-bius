@@ -4,6 +4,8 @@
 
 This is a **separate experimental Windows x64 runtime**, not a replacement for the tested Möbius 0.8.3 files. The original `app/` directory, installer and runtime hash manifest remain the baseline. This work does not publish a GitHub Release or change the Adobe Portfolio page.
 
+The candidate build and Windows tests completed on 2026-10-09. See the [validation report](NATIVE-CANDIDATE-VALIDATION.md) for artifact hashes, test results, an initial UI-test failure and remaining adoption checks.
+
 ### Source provenance
 
 `scripts/native/sources.lock.json` records 20 source archives, each with a fixed commit or release and SHA-256. It includes the libplacebo submodules separately; GitHub source snapshots do not contain gitlink contents. The selected mpv and FFmpeg revisions match the previously identified mpv application and Hap SDK sources. Other dependency revisions are new candidate inputs, not a claim about the old DLL's internals.
@@ -48,6 +50,8 @@ bash scripts/native/build-linux.sh /absolute/path/to/separate/native-work
 For Windows testing, copy the app into a **new** test directory and replace only that copy's native runtime using the candidate. Preserve the baseline and use the application's test mode to avoid saving user preferences. Run `--verify`, the synthetic-media `--self-test`, frame-number/seek/volume tests, GPU decode checks, and shutdown tests. Installer integration and public distribution are later steps.
 
 ## 日本語
+
+2026年10月9日に候補版のビルドとWindows実機テストが完了しました。[検証結果](NATIVE-CANDIDATE-VALIDATION.md#日本語)に、成果物の識別情報、テスト結果、初回に発生したUIテストの失敗、正式採用までに残る確認事項を記載しています。
 
 返信待ちと並行して進める、Windows x64向けの**別構成の検証用ビルド**です。使用ソース20件の版とSHA-256、libplaceboのサブモジュールを固定しました。ソース原本・著作権表示・ビルド設定・ツールチェーンの情報を保存する構成です。
 
