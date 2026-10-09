@@ -138,9 +138,13 @@ sed -e "s|^prefix=.*|prefix=$PREFIX|" -e "s|^relver=.*|relver=$lua_epoch|" \
     "$SRC/luajit/etc/luajit.pc" > "$PREFIX/lib/pkgconfig/luajit.pc"
 # Meson's iconv system lookup does not search this cross-build prefix for a
 # static archive. Link it explicitly for both its probe and the finished DLL.
+patch -d "$SRC/mpv" -p1 < "$REPO/scripts/native/patches/mpv-d3d11-filter-helpers.patch"
+cp "$REPO/scripts/native/patches/mpv-d3d11-filter-helpers.patch" "$WORK/provenance/"
+cpp_runtime=$("$CXX" -print-file-name=libstdc++.a)
+test -f "$cpp_runtime"
 meson_build mpv --default-library=shared -Dgpl=false -Dlibmpv=true -Dcplayer=true -Dlua=luajit \
-    "-Dc_link_args=['-L$PREFIX/lib','-static-libgcc','-static-libstdc++','$PREFIX/lib/libiconv.a']" \
-    "-Dcpp_link_args=['-L$PREFIX/lib','-static-libgcc','-static-libstdc++','$PREFIX/lib/libiconv.a']" \
+    "-Dc_link_args=['-L$PREFIX/lib','-static-libgcc','-static-libstdc++','$PREFIX/lib/libiconv.a','$cpp_runtime']" \
+    "-Dcpp_link_args=['-L$PREFIX/lib','-static-libgcc','-static-libstdc++','$PREFIX/lib/libiconv.a','$cpp_runtime']" \
     -Dbuild-date=false -Dgl=enabled -Dgl-win32=enabled -Dplain-gl=enabled \
     -Dgl-dxinterop=enabled -Dgl-dxinterop-d3d9=enabled -Dvector=enabled \
     -Dd3d-hwaccel=enabled -Dd3d9-hwaccel=enabled \

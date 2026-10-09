@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
           sudo apt-get update
-          sudo apt-get install -y gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 cmake ninja-build nasm pkg-config autoconf automake libtool gettext python3-venv ccache
+          sudo apt-get install -y gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 cmake ninja-build nasm pkg-config autoconf automake libtool gettext python3-venv ccache patch
           python3 -m venv "$RUNNER_TEMP/native-python"
           "$RUNNER_TEMP/native-python/bin/pip" install meson==1.9.1 packaging==25.0
           echo "$RUNNER_TEMP/native-python/bin" >> "$GITHUB_PATH"

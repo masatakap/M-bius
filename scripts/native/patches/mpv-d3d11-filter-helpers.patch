@@ -1,0 +1,14 @@
+--- a/meson.build
++++ b/meson.build
+@@ -1432,6 +1432,11 @@
+ if features['d3d-hwaccel']
+     sources += files('video/d3d.c',
+                      'video/filter/vf_d3d11vpp.c')
++    # The D3D11 video filter also uses these color-space helpers.
++    if not (features['d3d11'] or features['egl-angle-win32'] or features['vulkan'])
++        sources += files('video/out/gpu/d3d11_helpers.c')
++        features += {'dxgi-debug-d3d11': cc.has_header_symbol('d3d11sdklayers.h', 'DXGI_DEBUG_D3D11')}
++    endif
+ endif
+ 
+ amf = cc.has_header('AMF/core/Factory.h', required:

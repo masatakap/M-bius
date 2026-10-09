@@ -12,6 +12,8 @@ This is a **separate experimental Windows x64 runtime**, not a replacement for t
 
 The compiler and build-tool environment is recorded rather than fully reproducibly pinned. This preparation does not guarantee byte-identical output or constitute a completed license review. Compiler runtime exceptions, per-file notices and the final source inventory must still be checked before release. Actions artifacts expire after 30 days; accepted final source archives must be preserved with the final release, not left only in Actions.
 
+The tracked patch `scripts/native/patches/mpv-d3d11-filter-helpers.patch` includes mpv’s shared D3D11 color-space helpers when GPU decoding is enabled without the optional D3D11 presentation backend. The unchanged upstream archive and the applied patch are both preserved; the Möbius application code is unchanged.
+
 ### Candidate scope and differences to check
 
 | Area | Candidate configuration / required verification |
