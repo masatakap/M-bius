@@ -15,7 +15,7 @@ system = set("kernel32.dll user32.dll advapi32.dll ole32.dll oleaut32.dll shell3
              "opengl32.dll dwmapi.dll avrt.dll setupapi.dll mfplat.dll mfuuid.dll "
              "mf.dll propsys.dll powrprof.dll uuid.dll dwrite.dll usp10.dll "
              "winspool.drv iphlpapi.dll psapi.dll msimg32.dll ksuser.dll "
-             "cfgmgr32.dll wintrust.dll rpcrt4.dll shcore.dll uxtheme.dll".split())
+             "cfgmgr32.dll wintrust.dll rpcrt4.dll shcore.dll uxtheme.dll avicap32.dll".split())
 supplied = {p.name.lower() for p in runtime.iterdir() if p.suffix.lower() == ".dll"}
 imports = {}
 unresolved_imports = {}
